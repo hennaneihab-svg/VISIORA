@@ -7,7 +7,7 @@
   <meta name="description" content="VISIORA est une agence créative premium spécialisée dans la production vidéo, photographie de marque et branding au positionnement cinématographique.">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
 
   <!-- Core CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -40,16 +40,36 @@
     }
     .loader-content {
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* Image logo dans le loader */
+    .loader-logo-img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      transform: scale(0.8) rotate(-10deg);
+      animation: loaderImgReveal 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) 0.15s forwards;
+      filter: drop-shadow(0 0 24px rgba(212, 20, 26, 0.55));
+    }
+    @keyframes loaderImgReveal {
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
     }
     .loader-logo {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 3.5rem;
+      font-size: 3.2rem;
       color: #ffffff;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       font-weight: 700;
       text-transform: uppercase;
       display: block;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       opacity: 0;
     }
     .loader-logo span {
@@ -58,7 +78,7 @@
     .loader-bar {
       width: 0;
       height: 2px;
-      background-color: #D4141A;
+      background: linear-gradient(90deg, transparent, #D4141A, transparent);
       margin: 0 auto;
     }
   </style>
@@ -68,6 +88,7 @@
   <!-- Entry Loader Screen -->
   <div id="intro-loader">
     <div class="loader-content">
+      <img src="assets/images/logo.png" alt="Logo VISIORA" class="loader-logo-img">
       <span class="loader-logo">VISIORA<span>.</span></span>
       <div class="loader-bar"></div>
     </div>
