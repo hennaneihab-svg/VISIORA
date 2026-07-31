@@ -13,16 +13,15 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/home.css">
   
-  <!-- GSAP Core and ScrollTrigger via CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <!-- GSAP : chargé en async (non bloquant) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" async></script>
   
-  <!-- Global Main Script -->
+  <!-- Scripts page : defer = exécutés après le HTML parsé, sans bloquer -->
   <script src="assets/js/main.js" defer></script>
-  <!-- Home Page Script -->
   <script src="assets/js/home.js" defer></script>
-  <!-- WavyBackground Canvas Animation (simplex-noise via ESM CDN) -->
-  <script type="module" src="assets/js/wavy-bg.js"></script>
+  <!-- WavyBackground : defer pour ne pas bloquer le premier rendu -->
+  <script src="assets/js/wavy-bg.js" defer></script>
   
   <!-- Inline Loader CSS for instantaneous rendering -->
   <style>

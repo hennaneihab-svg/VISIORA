@@ -37,7 +37,8 @@ function initAllOtherAnimations() {
 
 function runLoaderAndStartAnimations(loader) {
   const loaderLogo = loader.querySelector('.loader-logo');
-  const loaderBar = loader.querySelector('.loader-bar');
+  const loaderImg  = loader.querySelector('.loader-logo-img');
+  const loaderBar  = loader.querySelector('.loader-bar');
 
   const mainTimeline = gsap.timeline({
     onComplete: () => {
@@ -47,32 +48,26 @@ function runLoaderAndStartAnimations(loader) {
   });
 
   mainTimeline
-    // 1. Apparition du logo
-    .fromTo(loaderLogo, 
-      { opacity: 0, scale: 0.95 },
-      { opacity: 1, scale: 1, duration: 0.8, ease: 'power2.out', delay: 0.5 }
+    // 1. Apparition rapide du logo (réduit à 0.4s)
+    .fromTo([loaderImg, loaderLogo].filter(Boolean),
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', delay: 0.15, stagger: 0.1 }
     )
-    // 2. Remplissage de la barre rouge
+    // 2. Barre rouge (réduite de 1.2s à 0.6s)
     .fromTo(loaderBar,
       { width: 0 },
-      { width: 140, duration: 1.2, ease: 'power3.inOut' },
-      '-=0.2'
+      { width: 140, duration: 0.6, ease: 'power3.inOut' },
+      '-=0.1'
     )
-    // 3. Disparition du loader
-    .to([loaderLogo, loaderBar], {
-      opacity: 0,
-      duration: 0.4,
-      ease: 'power2.in'
+    // 3. Disparition rapide (0.3s)
+    .to([loaderImg, loaderLogo, loaderBar].filter(Boolean), {
+      opacity: 0, duration: 0.25, ease: 'power2.in'
     })
     .to(loader, {
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power2.inOut'
-    }, '-=0.2')
-    // 4. Lancement de l'animation Hero
-    .add(() => {
-      initHeroAnimations(0.1);
-    }, '-=0.4');
+      opacity: 0, duration: 0.35, ease: 'power2.inOut'
+    }, '-=0.15')
+    // 4. Héro
+    .add(() => { initHeroAnimations(0); }, '-=0.3');
 }
 
 /**
@@ -204,31 +199,24 @@ function initProcessTimeline() {
 
   // Desktop Horizontal Pin Scroll
   if (window.innerWidth > 800) {
-    const steps = gsap.utils.toArray('.timeline-step-horizontal');
-    const stepCount = steps.length;
-    const scrollWidth = horizontalTimeline.scrollWidth - window.innerWidth;
+    // Différer le calcul du scrollWidth pour éviter le reflow au chargement
+    requestAnimationFrame(() => {
+      const scrollWidth = horizontalTimeline.scrollWidth - window.innerWidth;
 
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '.process-section',
-        pin: true,
-        scrub: 1,
-        start: 'top top',
-        // Scroll duration matches the total amount of horizontal overflow
-        end: () => `+=${scrollWidth}`,
-        invalidateOnRefresh: true
-      }
-    })
-    .to(horizontalTimeline, {
-      x: () => -scrollWidth,
-      ease: 'none'
-    })
-    .to(progressBarHorizontal, {
-      width: '100%',
-      ease: 'none'
-    }, 0); // Start progress bar simultaneously (at time 0)
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.process-section',
+          pin: true,
+          scrub: 1,
+          start: 'top top',
+          end: () => `+=${scrollWidth}`,
+          invalidateOnRefresh: true,
+        }
+      })
+      .to(horizontalTimeline, { x: () => -scrollWidth, ease: 'none' })
+      .to(progressBarHorizontal, { width: '100%', ease: 'none' }, 0);
+    });
   } 
-  // Mobile Vertical Progression
   else {
     const verticalSteps = gsap.utils.toArray('.timeline-step-vertical');
     const progressBarVertical = document.querySelector('.timeline-progress-vertical');
@@ -246,7 +234,6 @@ function initProcessTimeline() {
       });
     }
 
-    // Toggle active state on steps as they cross viewport
     verticalSteps.forEach(step => {
       ScrollTrigger.create({
         trigger: step,
