@@ -21,6 +21,8 @@
   <script src="assets/js/main.js" defer></script>
   <!-- Home Page Script -->
   <script src="assets/js/home.js" defer></script>
+  <!-- WavyBackground Canvas Animation (simplex-noise via ESM CDN) -->
+  <script type="module" src="assets/js/wavy-bg.js"></script>
   
   <!-- Inline Loader CSS for instantaneous rendering -->
   <style>
@@ -77,13 +79,18 @@
   <!-- Main Content Area -->
   <main id="main-content">
     
-    <!-- 1. HERO SECTION -->
+    <!-- 1. HERO SECTION — WavyBackground canvas injecté dynamiquement par wavy-bg.js -->
     <section class="hero-section" id="hero">
-      <video class="hero-video-bg" autoplay loop muted playsinline poster="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1920">
+      <!-- Vidéo conservée en fallback accessible mais masquée visuellement par le canvas animé -->
+      <video class="hero-video-bg" autoplay loop muted playsinline aria-hidden="true"
+             poster="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1920">
         <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05c563d1dd3e1e2c6d92b12f67645f7&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
       </video>
+
+      <!-- Overlay cinématographique — z-index géré par wavy-bg.js -->
       <div class="hero-overlay"></div>
       
+      <!-- Contenu Hero -->
       <div class="hero-content">
         <p class="hero-subtitle">Studio de création haut de gamme</p>
         <h1 class="hero-title">Nous façonnons le <span>cinéma</span> de votre marque.</h1>
