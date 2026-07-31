@@ -57,8 +57,11 @@ function initHeaderInteractions() {
   const header = document.getElementById('global-header');
   const burgerToggle = document.getElementById('burger-toggle');
   const mobileOverlay = document.getElementById('mobile-overlay');
-  
-  if (!burgerToggle || !mobileOverlay) return;
+
+  if (!burgerToggle || !mobileOverlay) {
+    console.warn('[VISIORA] Burger or overlay element not found after header load.');
+    return;
+  }
 
   // 1. Highlight Active Links
   highlightActiveLinks();
@@ -72,75 +75,75 @@ function initHeaderInteractions() {
     }
   };
   window.addEventListener('scroll', handleScroll);
-  handleScroll(); // Check initially
+  handleScroll();
 
-  // 3. Mobile Menu Toggle (GSAP-powered overlay animation)
+  // 3. Mobile Menu Toggle — GSAP gère display flex/none EXCLUSIVEMENT
   let isMenuOpen = false;
-  
-  // Set initial states for GSAP
+
+  // État initial : caché (GSAP prend le contrôle total, le CSS a display:none)
   gsap.set(mobileOverlay, { display: 'none', opacity: 0 });
-  
-  const toggleMenu = () => {
-    isMenuOpen = !isMenuOpen;
-    burgerToggle.classList.toggle('open', isMenuOpen);
-    burgerToggle.setAttribute('aria-expanded', isMenuOpen);
-    mobileOverlay.setAttribute('aria-hidden', !isMenuOpen);
+
+  const closeMenu = () => {
+    if (!isMenuOpen) return;
+    isMenuOpen = false;
+    burgerToggle.classList.remove('open');
+    burgerToggle.setAttribute('aria-expanded', 'false');
+    mobileOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
 
     const mobileLinks = mobileOverlay.querySelectorAll('.mobile-nav-link');
     const mobileSocials = mobileOverlay.querySelector('.mobile-socials');
 
-    if (isMenuOpen) {
-      // Open Menu
-      document.body.style.overflow = 'hidden'; // Disable page scrolling
-      gsap.set(mobileOverlay, { display: 'flex' });
-      
-      gsap.timeline()
-        .to(mobileOverlay, {
-          opacity: 1,
-          duration: 0.4,
-          ease: 'power2.out'
-        })
-        .fromTo(mobileLinks, 
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out' },
-          '-=0.2'
-        )
-        .fromTo(mobileSocials,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' },
-          '-=0.3'
-        );
-    } else {
-      // Close Menu
-      document.body.style.overflow = ''; // Re-enable page scrolling
-      
-      gsap.timeline()
-        .to(mobileLinks, {
-          y: -20,
-          opacity: 0,
-          duration: 0.3,
-          stagger: 0.05,
-          ease: 'power2.in'
-        })
-        .to(mobileOverlay, {
-          opacity: 0,
-          duration: 0.4,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            gsap.set(mobileOverlay, { display: 'none' });
-          }
-        }, '-=0.15');
-    }
+    gsap.timeline()
+      .to([...mobileLinks, mobileSocials].filter(Boolean), {
+        y: -20, opacity: 0, duration: 0.25, stagger: 0.04, ease: 'power2.in'
+      })
+      .to(mobileOverlay, {
+        opacity: 0, duration: 0.35, ease: 'power2.inOut',
+        onComplete: () => { gsap.set(mobileOverlay, { display: 'none' }); }
+      }, '-=0.1');
   };
+
+  const openMenu = () => {
+    if (isMenuOpen) return;
+    isMenuOpen = true;
+    burgerToggle.classList.add('open');
+    burgerToggle.setAttribute('aria-expanded', 'true');
+    mobileOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    const mobileLinks = mobileOverlay.querySelectorAll('.mobile-nav-link');
+    const mobileSocials = mobileOverlay.querySelector('.mobile-socials');
+
+    // display:flex d'abord, puis animer l'opacité
+    gsap.set(mobileOverlay, { display: 'flex', opacity: 0 });
+
+    gsap.timeline()
+      .to(mobileOverlay, { opacity: 1, duration: 0.35, ease: 'power2.out' })
+      .fromTo(mobileLinks,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.45, stagger: 0.07, ease: 'power3.out' },
+        '-=0.2'
+      )
+      .fromTo(mobileSocials || [],
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' },
+        '-=0.3'
+      );
+  };
+
+  const toggleMenu = () => { isMenuOpen ? closeMenu() : openMenu(); };
 
   burgerToggle.addEventListener('click', toggleMenu);
 
-  // Close mobile menu on clicking any navigation link (useful for hash links / same-page redirects)
-  const links = mobileOverlay.querySelectorAll('.mobile-nav-link');
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      if (isMenuOpen) toggleMenu();
-    });
+  // Fermer le menu en cliquant un lien
+  mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Fermer avec touche Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isMenuOpen) closeMenu();
   });
 
   // 4. Smooth Page Out Transition on Navigation Links
@@ -148,21 +151,11 @@ function initHeaderInteractions() {
   localLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       const targetUrl = link.getAttribute('href');
-      
-      // Do not animate if command/ctrl key is pressed or link opens in new tab
-      if (e.metaKey || e.ctrlKey || link.target === '_blank' || !targetUrl.endsWith('.html')) {
-        return;
-      }
-
+      if (e.metaKey || e.ctrlKey || link.target === '_blank' || !targetUrl.endsWith('.html')) return;
       e.preventDefault();
-      
       gsap.to('body', {
-        opacity: 0,
-        duration: 0.4,
-        ease: 'power2.in',
-        onComplete: () => {
-          window.location.href = targetUrl;
-        }
+        opacity: 0, duration: 0.35, ease: 'power2.in',
+        onComplete: () => { window.location.href = targetUrl; }
       });
     });
   });

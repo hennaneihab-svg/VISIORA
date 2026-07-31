@@ -125,6 +125,15 @@
      ========================================================== */
   const heroSection = document.getElementById('hero');
   if (heroSection) {
+    // === PERFORMANCE PC : Supprimer complètement la vidéo (double charge GPU) ===
+    const heroVideo = heroSection.querySelector('.hero-video-bg');
+    if (heroVideo) {
+      heroVideo.pause();          // Arrêter le décodage vidéo
+      heroVideo.src = '';         // Libérer la bande passante
+      heroVideo.load();           // Vider le buffer
+      heroVideo.style.display = 'none'; // Masquer visuellement
+    }
+
     // Créer et injecter le canvas hero
     const heroCanvas = document.createElement('canvas');
     heroCanvas.id = 'wavy-hero-canvas';
@@ -138,51 +147,40 @@
       pointer-events: none;
     `;
 
-    // Cacher la vidéo, conserver comme fallback (accessibilité)
-    const heroVideo = heroSection.querySelector('.hero-video-bg');
-    if (heroVideo) {
-      heroVideo.style.opacity = '0';
-      heroVideo.style.transition = 'opacity 1s ease';
-    }
-
-    // Ajuster l'overlay par-dessus le canvas
+    // Overlay très léger pour laisser les vagues vraiment visibles
     const heroOverlay = heroSection.querySelector('.hero-overlay');
     if (heroOverlay) {
       heroOverlay.style.zIndex = '2';
-      // Overlay plus léger pour laisser transparaître les vagues
       heroOverlay.style.background = `
-        radial-gradient(circle at center, rgba(3,4,5,0.2) 0%, rgba(3,4,5,0.6) 100%),
-        linear-gradient(to bottom, rgba(3,4,5,0.3) 0%, rgba(3,4,5,0.75) 100%)
+        radial-gradient(ellipse at center, rgba(3,4,5,0.05) 0%, rgba(3,4,5,0.4) 100%),
+        linear-gradient(to bottom, rgba(3,4,5,0.15) 0%, rgba(3,4,5,0.6) 100%)
       `;
     }
 
-    // Contenu doit passer au-dessus de l'overlay
     const heroContent = heroSection.querySelector('.hero-content');
-    if (heroContent) heroContent.style.zIndex = '3';
-
+    if (heroContent) heroContent.style.zIndex = '4';
     const scrollIndicator = heroSection.querySelector('.scroll-indicator');
-    if (scrollIndicator) scrollIndicator.style.zIndex = '3';
+    if (scrollIndicator) scrollIndicator.style.zIndex = '4';
 
-    // Injecter juste avant l'overlay
     if (heroOverlay) {
       heroSection.insertBefore(heroCanvas, heroOverlay);
     } else {
       heroSection.prepend(heroCanvas);
     }
 
-    // Lancer l'animation hero (vagues dynamiques avec rouge vif + accents)
+    // === VAGUES HERO : Plus visibles, moins de blur, plus larges ===
     createWavyCanvas(heroCanvas, {
       colors: [
-        '#D4141A', // Rouge Shutter vif
-        '#9A0F13', // Rouge sombre
-        '#5E0A0C', // Rouge profond
-        '#2D2E2E', // Gunmetal (subtil)
-        '#1a1a1b', // Noir doux
+        '#D4141A', // Rouge Shutter vif — vague principale
+        '#B01016', // Rouge moyen
+        '#8A0C11', // Rouge profond
+        '#4A0508', // Rouge très sombre
+        '#2D2E2E', // Gunmetal
       ],
       backgroundFill: '#030405',
-      waveWidth: 60,
-      waveOpacity: 0.5,
-      blur: 8,
+      waveWidth: 80,      // Plus large = plus visible
+      waveOpacity: 0.72,  // Plus opaque = rouge bien visible
+      blur: 4,            // Moins de blur = contours plus nets
       speed: 'fast',
       waveCount: 5,
     });

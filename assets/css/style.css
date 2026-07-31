@@ -391,27 +391,22 @@ header .header-container {
   background-color: var(--color-white);
 }
 
-/* Mobile Overlay Menu */
+/* Mobile Overlay Menu — affichage contrôlé exclusivement par GSAP (main.js) */
 .mobile-nav-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: var(--bg-primary);
+  background-color: rgba(3, 4, 5, 0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 1001;
-  display: flex;
+  display: none; /* GSAP toggle via gsap.set(display:'flex'/'none') */
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.mobile-nav-overlay.open {
-  opacity: 1;
-  visibility: visible;
+  /* PAS de opacity/visibility ici — GSAP gère tout */
 }
 
 .mobile-menu-links {
