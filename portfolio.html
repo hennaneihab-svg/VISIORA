@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio & Réalisations — VISIORA</title>
+  <meta name="description" content="Explorez notre galerie de projets créatifs : vidéos de marque, reportages photographiques, chartes graphiques et identités de marque premium.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
+  
+  <!-- GSAP Core via CDN (ScrollTrigger not needed on this page unless doing custom scroll, but we load it via main.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  
+  <!-- Global Main Script -->
+  <script src="assets/js/main.js" defer></script>
+  <!-- Portfolio Page Script -->
+  <script src="assets/js/portfolio.js" defer></script>
+</head>
+<body data-page="portfolio">
+
+  <!-- Global Header Component -->
+  <header id="global-header"></header>
+
+  <!-- Main Content Area -->
+  <main id="main-content">
+    
+    <!-- Intro Section -->
+    <section class="portfolio-intro">
+      <div class="container">
+        <h1 class="portfolio-intro-title">Nos oeuvres et <span>récits visuels</span>.</h1>
+        
+        <!-- Filter Bar -->
+        <div class="portfolio-filters">
+          <button class="filter-btn active" data-filter="all">Tout</button>
+          <button class="filter-btn" data-filter="video">Vidéo</button>
+          <button class="filter-btn" data-filter="photo">Photo</button>
+          <button class="filter-btn" data-filter="design">Design</button>
+          <button class="filter-btn" data-filter="branding">Branding</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Gallery Grid -->
+    <section class="portfolio-container">
+      <div class="container">
+        <div class="portfolio-masonry">
+          
+          <!-- Projet 1: Video (Wide) -->
+          <div class="portfolio-card card-wide" 
+               data-category="video" 
+               data-category-label="Vidéographie"
+               data-title="The Silent Valley" 
+               data-description="Un court-métrage contemplatif capturant la beauté brute et le silence mystique des vallées alpines au lever du soleil."
+               data-media-src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05c563d1dd3e1e2c6d92b12f67645f7&profile_id=139&oauth2_token_id=57447761" 
+               data-is-video="true">
+            <img src="https://images.pexels.com/photos/1117132/pexels-photo-1117132.jpeg?auto=compress&cs=tinysrgb&w=800" alt="The Silent Valley" loading="lazy">
+            <div class="portfolio-card-overlay">
+              <span class="portfolio-card-cat">Vidéographie</span>
+              <h3 class="portfolio-card-title">The Silent Valley</h3>
+            </div>
+          </div>
+
+          <!-- Projet 2: Branding (Square) -->
+          <div class="portfolio-card card-square" 
+               data-category="branding" 
+               data-category-label="Branding"
+               data-title="Eclipse" 
+               data-description="Conception complète de l'identité de marque pour Eclipse, un studio d'architecture avant-gardiste. Une esthétique noire et rouge minimaliste et géométrique."
+               data-media-src="https://images.pexels.com/photos/3589903/pexels-photo-3589903.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+               data-is-video="false">
+            <img src="https://images.pexels.com/photos/3589903/pexels-photo-3589903.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Eclipse" loading="lazy">
+            <div class="portfolio-card-overlay">
+              <span class="portfolio-card-cat">Branding</span>
+              <h3 class="portfolio-card-title">Eclipse</h3>
+            </div>
+          </div>
+
+          <!-- Projet 3: Photo (Tall) -->
+          <div class="portfolio-card card-tall" 
+               data-category="photo" 
+               data-category-label="Photographie"
+               data-title="Street Echoes" 
+               data-description="Une série de portraits de rue capturés à la tombée de la nuit à Paris, jouant sur les contrastes chromatiques des néons et de la pluie."
+               data-media-src="https://images.pexels.com/photos/982612/pexels-photo-982612.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+               data-is-video="false">
+            <img src="https://images.pexels.com/photos/982612/pexels-photo-982612.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Street Echoes" loading="lazy">
+            <div class="portfolio-card-overlay">
+              <span class="portfolio-card-cat">Photographie</span>
+              <h3 class="portfolio-card-title">Street Echoes</h3>
+            </div>
+          </div>
+
+          <!-- Projet 4: Design (Wide) -->
+          <div class="portfolio-card card-wide" 
+               data-category="design" 
+               data-category-label="Design Graphique"
+               data-title="Skate Culture" 
+               data-description="Mise en page éditoriale et conception d'un magazine imprimé alternatif célébrant la culture skate et underground des années 90."
+               data-media-src="https://images.pexels.com/photos/2792157/pexels-photo-2792157.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+               data-is-video="false">
+            <img src="https://images.pexels.com/photos/2792157/pexels-photo-2792157.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Skate Culture" loading="lazy">
+            <div class="portfolio-card-overlay">
+              <span class="portfolio-card-cat">Design Graphique</span>
+              <h3 class="portfolio-card-title">Skate Culture</h3>
+            </div>
+          </div>
+
+          <!-- Projet 5: Video (Tall) -->
+          <div class="portfolio-card card-tall" 
+               data-category="video" 
+               data-category-label="Vidéographie"
+               data-title="Future Noir" 
+               data-description="Teaser cinématographique cyberpunk explorant les lumières bleues et rouges et la solitude mélancolique d'une mégalopole futuriste."
+               data-media-src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05c563d1dd3e1e2c6d92b12f67645f7&profile_id=139&oauth2_token_id=57447761" 
+               data-is-video="true">
+            <img src="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Future Noir" loading="lazy">
+            <div class="portfolio-card-overlay">
+              <span class="portfolio-card-cat">Vidéographie</span>
+              <h3 class="portfolio-card-title">Future Noir</h3>
+            </div>
+          </div>
+
+          <!-- Projet 6: Design (Square) -->
+          <div class="portfolio-card card-square" 
+               data-category="design" 
+               data-category-label="Design Graphique"
+               data-title="Neo-Human" 
+               data-description="Conception de visuels promotionnels et d'illustrations numériques abstraites pour une exposition d'art contemporain explorant le lien homme-machine."
+               data-media-src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+               data-is-video="false">
+            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Neo-Human" loading="lazy">
+            <div class="portfolio-card-overlay">
+              <span class="portfolio-card-cat">Design Graphique</span>
+              <h3 class="portfolio-card-title">Neo-Human</h3>
+            </div>
+          </div>
+
+          <!-- Projet 7: Branding (Wide) -->
+          <div class="portfolio-card card-wide" 
+               data-category="branding" 
+               data-category-label="Branding"
+               data-title="Monolith Publishing" 
+               data-description="Création d'une identité de marque puissante et monolithique pour une maison d'édition littéraire haut de gamme à Paris."
+               data-media-src="https://images.pexels.com/photos/3182743/pexels-photo-3182743.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+               data-is-video="false">
+            <img src="https://images.pexels.com/photos/3182743/pexels-photo-3182743.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Monolith Publishing" loading="lazy">
+            <div class="portfolio-card-overlay">
+              <span class="portfolio-card-cat">Branding</span>
+              <h3 class="portfolio-card-title">Monolith</h3>
+            </div>
+          </div>
+
+          <!-- Projet 8: Photo (Tall) -->
+          <div class="portfolio-card card-tall" 
+               data-category="photo" 
+               data-category-label="Photographie"
+               data-title="Dark Symphony" 
+               data-description="Photographies artistiques en noir et blanc réalisées lors d'une performance théâtrale d'opéra nocturne, mettant l'accent sur le clair-obscur dramatique."
+               data-media-src="https://images.pexels.com/photos/1117132/pexels-photo-1117132.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+               data-is-video="false">
+            <img src="https://images.pexels.com/photos/1117132/pexels-photo-1117132.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dark Symphony" loading="lazy">
+            <div class="portfolio-card-overlay">
+              <span class="portfolio-card-cat">Photographie</span>
+              <h3 class="portfolio-card-title">Dark Symphony</h3>
+            </div>
+          </div>
+
+          <!-- Projet 9: Video (Square) -->
+          <div class="portfolio-card card-square" 
+               data-category="video" 
+               data-category-label="Vidéographie"
+               data-title="Chroma Phase" 
+               data-description="Recherche colorimétrique expérimentale mettant en avant des explosions de fumées abstraites filmées en ultra-ralenti (1000 fps)."
+               data-media-src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05c563d1dd3e1e2c6d92b12f67645f7&profile_id=139&oauth2_token_id=57447761" 
+               data-is-video="true">
+            <img src="https://images.pexels.com/photos/982612/pexels-photo-982612.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Chroma Phase" loading="lazy">
+            <div class="portfolio-card-overlay">
+              <span class="portfolio-card-cat">Vidéographie</span>
+              <h3 class="portfolio-card-title">Chroma Phase</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX / MODAL OVERLAY -->
+    <div class="lightbox" id="portfolio-lightbox" aria-hidden="true" role="dialog">
+      <div class="lightbox-content-wrapper">
+        <!-- Close button -->
+        <button class="lightbox-close" aria-label="Fermer la lightbox">
+          <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          Fermer
+        </button>
+
+        <!-- Media Display (Dynamic Image or Video) -->
+        <div class="lightbox-media"></div>
+
+        <!-- Meta Information Panel -->
+        <div class="lightbox-info">
+          <span class="lightbox-cat">Catégorie</span>
+          <h2 class="lightbox-title">Titre du Projet</h2>
+          <p class="lightbox-desc">Description courte du projet créatif...</p>
+          <a href="contact.html" class="btn btn-primary" style="align-self: flex-start;">Discuter de ce projet</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Global Footer Component -->
+  <footer id="global-footer"></footer>
+
+</body>
+</html>

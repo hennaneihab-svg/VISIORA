@@ -1,0 +1,194 @@
+/* ==========================================================================
+   VISIORA - SERVICES PAGE SPECIFIC STYLES
+   ========================================================================== */
+
+.services-intro-section {
+  padding-top: 12rem;
+  padding-bottom: 4rem;
+  background-color: var(--bg-primary);
+}
+
+.services-intro-title {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1.1;
+  max-width: 900px;
+}
+
+.services-intro-title span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+/* Alternate Service Sections */
+.service-detail-section {
+  padding: 6rem 0;
+  background-color: var(--bg-primary);
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.service-row.reversed {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+@media (max-width: 991px) {
+  .service-row, .service-row.reversed {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+}
+
+/* Service Visual Container */
+.service-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.service-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Red Hover Overlay */
+.service-visual::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(212, 20, 26, 0.15);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.service-visual:hover img {
+  transform: scale(1.06);
+}
+
+.service-visual:hover::after {
+  opacity: 1;
+}
+
+/* Service Text Content */
+.service-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-num {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+}
+
+.service-info h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.service-info p {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* Feature Checklist */
+.service-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 2.5rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.feature-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.service-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  align-self: flex-start;
+  position: relative;
+  padding-bottom: 0.3rem;
+}
+
+.service-cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.service-cta:hover {
+  color: var(--color-accent);
+}
+
+.service-cta:hover::after {
+  width: 100%;
+}
+
+/* Animatable Dividers */
+.service-divider-container {
+  width: 100%;
+  background-color: var(--bg-primary);
+  padding: 0;
+}
+
+.service-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-border);
+  transform: scaleX(0);
+  transform-origin: left center;
+}

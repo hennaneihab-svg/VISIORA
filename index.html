@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VISIORA — Agence Créative Premium & Cinématographique</title>
+  <meta name="description" content="VISIORA est une agence créative premium spécialisée dans la production vidéo, photographie de marque et branding au positionnement cinématographique.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  
+  <!-- GSAP Core and ScrollTrigger via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  
+  <!-- Global Main Script -->
+  <script src="assets/js/main.js" defer></script>
+  <!-- Home Page Script -->
+  <script src="assets/js/home.js" defer></script>
+  
+  <!-- Inline Loader CSS for instantaneous rendering -->
+  <style>
+    #intro-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #030405;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .loader-content {
+      text-align: center;
+    }
+    .loader-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 3.5rem;
+      color: #ffffff;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+    }
+    .loader-logo span {
+      color: #D4141A;
+    }
+    .loader-bar {
+      width: 0;
+      height: 2px;
+      background-color: #D4141A;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body data-page="home">
+
+  <!-- Entry Loader Screen -->
+  <div id="intro-loader">
+    <div class="loader-content">
+      <span class="loader-logo">VISIORA<span>.</span></span>
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+
+  <!-- Global Header Component (Loaded dynamically via main.js) -->
+  <header id="global-header"></header>
+
+  <!-- Main Content Area -->
+  <main id="main-content">
+    
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <video class="hero-video-bg" autoplay loop muted playsinline poster="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1920">
+        <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05c563d1dd3e1e2c6d92b12f67645f7&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-content">
+        <p class="hero-subtitle">Studio de création haut de gamme</p>
+        <h1 class="hero-title">Nous façonnons le <span>cinéma</span> de votre marque.</h1>
+        <div class="hero-btns">
+          <a href="contact.html" class="btn btn-primary">Démarrer un projet</a>
+          <a href="portfolio.html" class="btn btn-outline">Voir le portfolio</a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- 2. SERVICES SECTION -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Expertises</span>
+          <h2 class="section-title">Nos Services sur mesure</h2>
+        </div>
+
+        <div class="services-grid">
+          <!-- Service 1: Création de contenu -->
+          <div class="service-card">
+            <div class="service-card-borders"></div>
+            <div class="service-icon-wrapper">
+              <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 16H5V8h9v8z"/></svg>
+            </div>
+            <div>
+              <h3>Création de contenu</h3>
+              <p>Production de visuels percutants et adaptés à votre communication pour captiver immédiatement votre audience.</p>
+            </div>
+          </div>
+
+          <!-- Service 2: Campagnes réseaux sociaux -->
+          <div class="service-card">
+            <div class="service-card-borders"></div>
+            <div class="service-icon-wrapper">
+              <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            </div>
+            <div>
+              <h3>Campagnes réseaux</h3>
+              <p>Conception de campagnes publicitaires à fort impact visuel, taillées pour engager et convertir sur les plateformes.</p>
+            </div>
+          </div>
+
+          <!-- Service 3: Gestion réseaux sociaux -->
+          <div class="service-card">
+            <div class="service-card-borders"></div>
+            <div class="service-icon-wrapper">
+              <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+            </div>
+            <div>
+              <h3>Gestion réseaux</h3>
+              <p>Animation éditoriale et gestion active de vos communautés pour pérenniser votre image de marque au quotidien.</p>
+            </div>
+          </div>
+
+          <!-- Service 4: Vidéographie -->
+          <div class="service-card">
+            <div class="service-card-borders"></div>
+            <div class="service-icon-wrapper">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 12 10 10-4.48 10-12S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            </div>
+            <div>
+              <h3>Vidéographie</h3>
+              <p>Réalisation de films institutionnels, de vidéos de marque et de spots publicitaires à la signature visuelle unique.</p>
+            </div>
+          </div>
+
+          <!-- Service 5: Photographie -->
+          <div class="service-card">
+            <div class="service-card-borders"></div>
+            <div class="service-icon-wrapper">
+              <svg viewBox="0 0 24 24"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+            </div>
+            <div>
+              <h3>Photographie</h3>
+              <p>Reportages corporatifs, shooting de produits et portraits de dirigeants capturés avec une lumière de studio rigoureuse.</p>
+            </div>
+          </div>
+
+          <!-- Service 6: Design graphique -->
+          <div class="service-card">
+            <div class="service-card-borders"></div>
+            <div class="service-icon-wrapper">
+              <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            </div>
+            <div>
+              <h3>Design graphique</h3>
+              <p>Création de supports de communication élégants et sophistiqués, en accord parfait avec votre ligne éditoriale.</p>
+            </div>
+          </div>
+
+          <!-- Service 7: Branding / Identité visuelle -->
+          <div class="service-card">
+            <div class="service-card-borders"></div>
+            <div class="service-icon-wrapper">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 12 10 10-4.48 10-12S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </div>
+            <div>
+              <h3>Branding & Identité</h3>
+              <p>Définition de l'ADN de votre marque, de sa charte graphique et de son logo pour affirmer un positionnement distinct.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. RÉALISATIONS (PORTFOLIO PREVIEW) -->
+    <section class="portfolio-preview-section" id="portfolio-preview">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Réalisations</span>
+          <h2 class="section-title">Sélection de Projets</h2>
+        </div>
+
+        <div class="portfolio-grid">
+          <!-- Projet 1 -->
+          <div class="portfolio-item">
+            <img src="https://images.pexels.com/photos/1117132/pexels-photo-1117132.jpeg?auto=compress&cs=tinysrgb&w=800" alt="The Silent Valley" loading="lazy">
+            <div class="portfolio-overlay">
+              <span class="portfolio-cat">Vidéographie</span>
+              <h3 class="portfolio-title">The Silent Valley</h3>
+            </div>
+          </div>
+
+          <!-- Projet 2 -->
+          <div class="portfolio-item">
+            <img src="https://images.pexels.com/photos/3589903/pexels-photo-3589903.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Eclipse" loading="lazy">
+            <div class="portfolio-overlay">
+              <span class="portfolio-cat">Branding</span>
+              <h3 class="portfolio-title">Eclipse</h3>
+            </div>
+          </div>
+
+          <!-- Projet 3 -->
+          <div class="portfolio-item">
+            <img src="https://images.pexels.com/photos/982612/pexels-photo-982612.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Street Echoes" loading="lazy">
+            <div class="portfolio-overlay">
+              <span class="portfolio-cat">Photographie</span>
+              <h3 class="portfolio-title">Street Echoes</h3>
+            </div>
+          </div>
+
+          <!-- Projet 4 -->
+          <div class="portfolio-item">
+            <img src="https://images.pexels.com/photos/2792157/pexels-photo-2792157.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Rebel Soul" loading="lazy">
+            <div class="portfolio-overlay">
+              <span class="portfolio-cat">Campagne Réseaux</span>
+              <h3 class="portfolio-title">Rebel Soul</h3>
+            </div>
+          </div>
+
+          <!-- Projet 5 -->
+          <div class="portfolio-item">
+            <img src="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Future Noir" loading="lazy">
+            <div class="portfolio-overlay">
+              <span class="portfolio-cat">Vidéographie</span>
+              <h3 class="portfolio-title">Future Noir</h3>
+            </div>
+          </div>
+
+          <!-- Projet 6 -->
+          <div class="portfolio-item">
+            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Neo-Human" loading="lazy">
+            <div class="portfolio-overlay">
+              <span class="portfolio-cat">Design Graphique</span>
+              <h3 class="portfolio-title">Neo-Human</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="portfolio.html" class="btn btn-outline">Voir tout le portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. POURQUOI VISIORA (VALUES & COUNTERS) -->
+    <section class="why-section" id="why-us">
+      <div class="container">
+        <div class="why-grid">
+          <!-- Text Narrative -->
+          <div class="why-content">
+            <span class="section-subtitle">Manifeste</span>
+            <h2>Une esthétique pure, un impact cinématographique.</h2>
+            <p>Parce que les meilleures histoires méritent d'être racontées avec une intensité cinématographique. Nous fusionnons la rigueur technique du matériel de pointe avec une vision artistique exigeante pour produire des contenus mémorables.</p>
+            <p>De la première idée créative à l'étalonnage colorimétrique final, nous prenons soin de chaque pixel pour positionner votre marque au sommet de sa catégorie.</p>
+          </div>
+
+          <!-- Counters Grid -->
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-number" data-target="8"><span>0</span>+</div>
+              <div class="stat-label">Années d'expérience</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number" data-target="150"><span>0</span>+</div>
+              <div class="stat-label">Projets Réalisés</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number" data-target="98"><span>0</span>%</div>
+              <div class="stat-label">Clients Satisfaits</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number" data-target="12"><span>0</span>+</div>
+              <div class="stat-label">Awards Créatifs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROCESSUS (TIMELINE) -->
+    <section class="process-section" id="process">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Méthode</span>
+          <h2 class="section-title">Notre Processus de Création</h2>
+        </div>
+      </div>
+
+      <!-- Timeline Container -->
+      <div class="timeline-container">
+        
+        <!-- Desktop Horizontal Timeline (Pinned) -->
+        <div class="timeline-horizontal">
+          <div class="timeline-track-horizontal">
+            <div class="timeline-progress-horizontal"></div>
+          </div>
+
+          <!-- Step 1 -->
+          <div class="timeline-step-horizontal">
+            <span class="step-number">01</span>
+            <div class="step-card">
+              <h3><span>Phase 01</span> Brief & Immersion</h3>
+              <p>Analyse approfondie de votre marque, compréhension de vos enjeux, ciblage d'audience et définition des contours du récit de votre projet.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-step-horizontal">
+            <span class="step-number">02</span>
+            <div class="step-card">
+              <h3><span>Phase 02</span> Concept & Direction</h3>
+              <p>Écriture du script, conception des scénarios, moodboards artistiques et direction créative pour valider l'identité visuelle avant production.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-step-horizontal">
+            <span class="step-number">03</span>
+            <div class="step-card">
+              <h3><span>Phase 03</span> Tournage & Production</h3>
+              <p>Captation vidéo et photo premium en studio ou extérieur avec nos caméras de cinéma, gestion de l'éclairage et mise en scène méticuleuse.</p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-step-horizontal">
+            <span class="step-number">04</span>
+            <div class="step-card">
+              <h3><span>Phase 04</span> Montage & Post-Prod</h3>
+              <p>Assemblage rythmique, étalonnage de couleurs professionnel, effets sonores et sound design pour une immersion totale dans votre film.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Vertical Timeline -->
+        <div class="container">
+          <div class="timeline-vertical">
+            <div class="timeline-track-vertical">
+              <div class="timeline-progress-vertical"></div>
+            </div>
+
+            <!-- Step 1 Mobile -->
+            <div class="timeline-step-vertical">
+              <span class="step-number-mobile">01 / IMMERSION</span>
+              <h3>Brief & Immersion</h3>
+              <p>Analyse approfondie de votre marque, compréhension de vos enjeux, ciblage d'audience et définition des contours du récit de votre projet.</p>
+            </div>
+
+            <!-- Step 2 Mobile -->
+            <div class="timeline-step-vertical">
+              <span class="step-number-mobile">02 / DIRECTION</span>
+              <h3>Concept & Direction</h3>
+              <p>Écriture du script, conception des scénarios, moodboards artistiques et direction créative pour valider l'identité visuelle avant production.</p>
+            </div>
+
+            <!-- Step 3 Mobile -->
+            <div class="timeline-step-vertical">
+              <span class="step-number-mobile">03 / CAPTATION</span>
+              <h3>Tournage & Production</h3>
+              <p>Captation vidéo et photo premium en studio ou extérieur avec nos caméras de cinéma, gestion de l'éclairage et mise en scène méticuleuse.</p>
+            </div>
+
+            <!-- Step 4 Mobile -->
+            <div class="timeline-step-vertical">
+              <span class="step-number-mobile">04 / MONTAGE</span>
+              <h3>Montage & Post-Prod</h3>
+              <p>Assemblage rythmique, étalonnage de couleurs professionnel, effets sonores et sound design pour une immersion totale dans votre film.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. CALL TO ACTION SECTION -->
+    <section class="cta-section" id="call-to-action">
+      <div class="cta-glow"></div>
+      <div class="cta-container container">
+        <h2>Prêt à écrire votre propre film ?</h2>
+        <p>Discutons de vos besoins de communication créative et donnons vie à une campagne visuelle sans précédent.</p>
+        <a href="contact.html" class="btn btn-primary">Démarrer un projet</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer Component (Loaded dynamically via main.js) -->
+  <footer id="global-footer"></footer>
+
+</body>
+</html>

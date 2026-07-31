@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VISIORA — Agence Créative Premium (Template de Base)</title>
+  <meta name="description" content="Agence créative premium spécialisée dans la vidéo, la photo et le branding cinématographique.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- GSAP Core and ScrollTrigger via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  
+  <!-- Global Main Script -->
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body data-page="home">
+
+  <!-- Global Header Component (Loaded dynamically via main.js) -->
+  <header id="global-header"></header>
+
+  <!-- Main Content Area -->
+  <main id="main-content">
+    
+    <!-- Hero Section (Exemple) -->
+    <section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+      <div class="container" style="opacity: 0; transform: translateY(30px); animation: fadeInUp 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.4s;">
+        <h1 style="font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 2rem; font-weight: 300;">
+          Nous façonnons le <span class="text-accent" style="font-family: var(--font-serif); font-style: italic;">cinéma</span> de votre marque.
+        </h1>
+        <p style="max-width: 600px; margin: 0 auto 3rem auto; color: var(--color-text-muted); font-size: 1.1rem; letter-spacing: 0.05em;">
+          Ce fichier sert de template de structure globale pour le site VISIORA. Utilisez cette architecture pour créer les nouvelles pages du site.
+        </p>
+        <div style="display: flex; gap: 1.5rem; justify-content: center;">
+          <a href="#" class="btn btn-primary">Démarrer un projet</a>
+          <a href="#" class="btn btn-outline">En savoir plus</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer Component (Loaded dynamically via main.js) -->
+  <footer id="global-footer"></footer>
+
+  <!-- Basic inline animation style for template demo -->
+  <style>
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+</body>
+</html>

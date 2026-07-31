@@ -1,0 +1,254 @@
+/* ==========================================================================
+   VISIORA - CONTACT PAGE SPECIFIC STYLES
+   ========================================================================== */
+
+.contact-intro {
+  padding-top: 12rem;
+  padding-bottom: 3rem;
+  background-color: var(--bg-primary);
+}
+
+.contact-intro-title {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.contact-intro-title span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+/* 1. LAYOUT GRID */
+.contact-section {
+  background-color: var(--bg-primary);
+  padding-bottom: 8rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+/* 2. FORM STYLING */
+.contact-form-wrapper {
+  background-color: var(--bg-gunmetal);
+  border: 1px solid var(--color-border);
+  padding: 4rem;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 640px) {
+  .contact-form-wrapper {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+.contact-form-wrapper h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.form-input {
+  width: 100%;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-graphite);
+  color: var(--color-white);
+  padding: 1rem 1.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+  border-radius: 0;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 10px rgba(212, 20, 26, 0.15);
+}
+
+/* Dropdown styling */
+select.form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 1.2rem;
+  padding-right: 3rem;
+  cursor: pointer;
+}
+
+select.form-input option {
+  background-color: var(--bg-gunmetal);
+  color: var(--color-white);
+  padding: 1rem;
+}
+
+/* Textarea specific */
+textarea.form-input {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* Validation error highlights */
+.form-group.error .form-input {
+  border-color: var(--color-accent);
+  background-color: rgba(212, 20, 26, 0.02);
+}
+
+.error-text {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  margin-top: 0.4rem;
+  font-weight: 500;
+  display: none;
+}
+
+.form-group.error .error-text {
+  display: block;
+}
+
+/* Success & Error State overlays */
+.form-status-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.status-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.status-icon-wrapper svg {
+  width: 40px;
+  height: 40px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.success-stroke {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  /* Animate in JS */
+}
+
+.form-status-screen h3 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.form-status-screen p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+
+/* 3. DETAILS SIDE (INFO + MAP + SOCIALS) */
+.contact-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.info-block h3 {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 1.2rem;
+}
+
+.info-block p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.info-block a:hover {
+  color: var(--color-white);
+}
+
+/* Social icons layout */
+.contact-socials {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.contact-socials .social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--bg-gunmetal);
+  border: 1px solid var(--color-border);
+}
+
+.contact-socials .social-icon:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* Google Maps Iframe */
+.map-container {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-gunmetal);
+}
+
+/* Custom cinematic map color invert filter */
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: invert(90%) hue-rotate(180deg) grayscale(100%) contrast(90%);
+}

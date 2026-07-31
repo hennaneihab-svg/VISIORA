@@ -1,0 +1,696 @@
+/* ==========================================================================
+   VISIORA - HOME PAGE SPECIFIC STYLES
+   ========================================================================== */
+
+/* 1. HERO SECTION */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(3, 4, 5, 0.4) 0%, rgba(3, 4, 5, 0.9) 100%),
+              linear-gradient(to bottom, rgba(3, 4, 5, 0.6) 0%, rgba(3, 4, 5, 0.8) 100%);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+.hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 2.5rem;
+}
+
+.hero-title span {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .hero-btns {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 0 2rem;
+  }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.scroll-indicator:hover {
+  color: var(--color-white);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  background: var(--color-accent);
+  animation: scrollDown 2s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+}
+
+@keyframes scrollDown {
+  0% { top: -25px; }
+  50% { top: 100%; }
+  100% { top: 100%; }
+}
+
+
+/* 2. SERVICES SECTION */
+.services-section {
+  background-color: var(--bg-primary);
+}
+
+.section-header {
+  margin-bottom: 5rem;
+  max-width: 600px;
+}
+
+.section-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* 7 services: let's make a beautiful custom grid. 
+   On desktop, 3 columns. Card 7 can span across or we can arrange them gracefully. */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.service-card {
+  background-color: var(--bg-gunmetal);
+  border: 1px solid var(--color-border);
+  padding: 3rem 2.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+}
+
+/* Border Draw Effect on Hover */
+.service-card::before,
+.service-card::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-accent);
+  transition: all 0.5s ease;
+  z-index: 10;
+}
+
+/* Top and Bottom lines */
+.service-card::before {
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+}
+
+.service-card::after {
+  bottom: 0;
+  right: 50%;
+  width: 0;
+  height: 1px;
+}
+
+/* Side borders wrapper */
+.service-card-borders {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.service-card-borders::before,
+.service-card-borders::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-accent);
+  transition: all 0.5s ease;
+  z-index: 10;
+}
+
+.service-card-borders::before {
+  top: 50%;
+  left: 0;
+  width: 1px;
+  height: 0;
+}
+
+.service-card-borders::after {
+  bottom: 50%;
+  right: 0;
+  width: 1px;
+  height: 0;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: transparent;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.service-card:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.service-card:hover::after {
+  right: 0;
+  width: 100%;
+}
+
+.service-card:hover .service-card-borders::before {
+  top: 0;
+  height: 100%;
+}
+
+.service-card:hover .service-card-borders::after {
+  bottom: 0;
+  height: 100%;
+}
+
+.service-icon-wrapper {
+  color: var(--color-accent);
+  width: 48px;
+  height: 48px;
+  margin-bottom: 2rem;
+}
+
+.service-icon-wrapper svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.service-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+
+/* 3. PORTFOLIO PREVIEW SECTION */
+.portfolio-preview-section {
+  background-color: var(--bg-gunmetal);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  background-color: var(--bg-primary);
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(3, 4, 5, 0.9) 0%, rgba(3, 4, 5, 0.2) 60%, rgba(3, 4, 5, 0) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 2;
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.08);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-cat {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+  transform: translateY(15px);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.05s;
+}
+
+.portfolio-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--color-white);
+  transform: translateY(15px);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s;
+}
+
+.portfolio-item:hover .portfolio-cat,
+.portfolio-item:hover .portfolio-title {
+  transform: translateY(0);
+}
+
+
+/* 4. POURQUOI VISIORA (VALUES & COUNTERS) */
+.why-section {
+  background-color: var(--bg-primary);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+.why-content h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.why-content p {
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-box {
+  background-color: var(--bg-gunmetal);
+  border: 1px solid var(--color-border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.stat-number {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  color: var(--color-white);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.stat-number span {
+  color: var(--color-accent);
+}
+
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+
+/* 5. PROCESSUS SECTION (HORIZONTAL PINNED TIMELINE) */
+.process-section {
+  background-color: var(--bg-primary);
+  overflow: hidden;
+  padding: 8rem 0;
+}
+
+.timeline-container {
+  position: relative;
+  margin-top: 5rem;
+  width: 100%;
+}
+
+/* Desktop Horizontal Timeline (using GSAP scroll scrollTrigger) */
+.timeline-horizontal {
+  display: flex;
+  width: 400vw; /* Spans multiple screen widths for pinning effect */
+  position: relative;
+}
+
+.timeline-step-horizontal {
+  width: 100vw;
+  padding: 0 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.timeline-step-horizontal .step-number {
+  font-family: var(--font-serif);
+  font-size: 8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.02);
+  position: absolute;
+  top: -2rem;
+  left: 8%;
+  z-index: 1;
+  transition: color 0.5s ease;
+}
+
+.timeline-step-horizontal:hover .step-number {
+  color: rgba(214, 20, 26, 0.05);
+}
+
+.step-card {
+  background-color: var(--bg-gunmetal);
+  border: 1px solid var(--color-border);
+  padding: 4rem;
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.step-card h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.step-card h3 span {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  border: 1px solid rgba(212, 20, 26, 0.3);
+  padding: 0.3rem 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.step-card p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Connecting Line */
+.timeline-track-horizontal {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.05);
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.timeline-progress-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+}
+
+/* Mobile Vertical Timeline (displayed via CSS media queries instead of horizontal) */
+.timeline-vertical {
+  display: none;
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 3rem;
+}
+
+.timeline-track-vertical {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 2px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.timeline-progress-vertical {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+}
+
+.timeline-step-vertical {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.timeline-step-vertical::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: -2rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  border: 2px solid var(--color-text-muted);
+  z-index: 2;
+  transform: translateX(-4px);
+  transition: var(--transition-fast);
+}
+
+.timeline-step-vertical.active::before {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
+}
+
+.timeline-step-vertical .step-number-mobile {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.timeline-step-vertical h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.timeline-step-vertical p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 800px) {
+  .timeline-horizontal, .timeline-track-horizontal {
+    display: none !important;
+  }
+  .timeline-vertical {
+    display: block;
+  }
+  .process-section {
+    padding-bottom: 4rem;
+  }
+}
+
+
+/* 6. CALL TO ACTION SECTION */
+.cta-section {
+  background-color: var(--bg-gunmetal);
+  padding: 6rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(214, 20, 26, 0.05) 0%, rgba(214, 20, 26, 0) 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cta-container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-section h2 {
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  margin-bottom: 1.5rem;
+}
+
+.cta-section p {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
