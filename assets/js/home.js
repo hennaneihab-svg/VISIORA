@@ -200,20 +200,20 @@ function initProcessTimeline() {
   // Desktop Horizontal Pin Scroll
   if (window.innerWidth > 800) {
     requestAnimationFrame(() => {
-      const scrollWidth = horizontalTimeline.scrollWidth - window.innerWidth;
+      const getScrollDistance = () => horizontalTimeline.scrollWidth - window.innerWidth;
 
       gsap.timeline({
         scrollTrigger: {
           trigger: '.process-section',
           pin: true,
           anticipatePin: 1,
-          scrub: 0.8,
+          scrub: 1,
           start: 'top top',
-          end: () => `+=${scrollWidth}`,
+          end: () => `+=${getScrollDistance()}`,
           invalidateOnRefresh: true,
         }
       })
-      .to(horizontalTimeline, { x: () => -scrollWidth, ease: 'none' })
+      .to(horizontalTimeline, { x: () => -getScrollDistance(), ease: 'none' })
       .to(progressBarHorizontal, { width: '100%', ease: 'none' }, 0);
     });
   } 

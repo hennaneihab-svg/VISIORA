@@ -544,6 +544,7 @@
 
 .timeline-step-horizontal {
   width: 100vw;
+  flex-shrink: 0;
   padding: 0 8vw;
   display: flex;
   flex-direction: column;
