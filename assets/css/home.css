@@ -493,65 +493,79 @@
 }
 
 
-/* 5. PROCESSUS SECTION (HORIZONTAL PINNED TIMELINE) */
+/* 5. PROCESSUS SECTION (HORIZONTAL PINNED TIMELINE FOR PC & VERTICAL FOR MOBILE) */
 .process-section {
   background-color: var(--bg-primary);
   overflow: hidden;
-  padding: 8rem 0;
+  position: relative;
+  padding: 6rem 0;
+}
+
+@media (min-width: 801px) {
+  .process-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 0 2rem 0;
+  }
 }
 
 .timeline-container {
   position: relative;
-  margin-top: 5rem;
+  margin-top: 3rem;
   width: 100%;
 }
 
-/* Desktop Horizontal Timeline (using GSAP scroll scrollTrigger) */
+/* Desktop Horizontal Timeline (GSAP Pinned) */
 .timeline-horizontal {
   display: flex;
-  width: 400vw; /* Spans multiple screen widths for pinning effect */
+  width: 400vw; /* Spans 4 viewports for horizontal pinning */
   position: relative;
 }
 
 .timeline-step-horizontal {
   width: 100vw;
-  padding: 0 10%;
+  padding: 0 8vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   position: relative;
 }
 
 .timeline-step-horizontal .step-number {
   font-family: var(--font-display);
-  font-size: 8rem;
+  font-size: clamp(4.5rem, 7vw, 7rem);
   font-weight: 700;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.025);
   position: absolute;
-  top: -2rem;
-  left: 8%;
+  top: -2.8rem;
+  left: 7vw;
   z-index: 1;
+  pointer-events: none;
   transition: color 0.5s ease;
 }
 
 .timeline-step-horizontal:hover .step-number {
-  color: rgba(214, 20, 26, 0.05);
+  color: rgba(212, 20, 26, 0.06);
 }
 
 .step-card {
   background-color: var(--bg-gunmetal);
   border: 1px solid var(--color-border);
-  padding: 4rem;
-  max-width: 600px;
+  padding: 2.8rem 3rem;
+  max-width: 560px;
+  width: 100%;
   position: relative;
   z-index: 2;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
 .step-card h3 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -559,11 +573,11 @@
 
 .step-card h3 span {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-accent);
   border: 1px solid rgba(212, 20, 26, 0.3);
-  padding: 0.3rem 0.8rem;
+  padding: 0.25rem 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -581,7 +595,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.06);
   z-index: 1;
   transform: translateY(-50%);
 }
@@ -593,52 +607,24 @@
   height: 100%;
   width: 0%;
   background-color: var(--color-accent);
-  box-shadow: 0 0 10px var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent);
 }
 
-.step-card p {
-  color: var(--color-text-muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-
-/* Connecting Line */
-.timeline-track-horizontal {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.05);
-  z-index: 1;
-  transform: translateY(-50%);
-}
-
-.timeline-progress-horizontal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%;
-  background-color: var(--color-accent);
-  box-shadow: 0 0 10px var(--color-accent);
-}
-
-/* Mobile Vertical Timeline (displayed via CSS media queries instead of horizontal) */
+/* Mobile Vertical Timeline */
 .timeline-vertical {
   display: none;
   position: relative;
-  padding-left: 2rem;
-  margin-top: 3rem;
+  padding-left: 2.5rem;
+  margin-top: 2rem;
 }
 
 .timeline-track-vertical {
   position: absolute;
   top: 0;
-  left: 4px;
+  left: 11px;
   width: 2px;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .timeline-progress-vertical {
@@ -653,48 +639,62 @@
 
 .timeline-step-vertical {
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .timeline-step-vertical::before {
   content: '';
   position: absolute;
-  top: 8px;
-  left: -2rem;
-  width: 10px;
-  height: 10px;
+  top: 1.5rem;
+  left: -2.5rem;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background-color: var(--bg-primary);
   border: 2px solid var(--color-text-muted);
-  z-index: 2;
-  transform: translateX(-4px);
+  z-index: 3;
+  transform: translateX(5px);
   transition: var(--transition-fast);
 }
 
 .timeline-step-vertical.active::before {
   border-color: var(--color-accent);
   background-color: var(--color-accent);
-  box-shadow: 0 0 8px var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent);
 }
 
-.timeline-step-vertical .step-number-mobile {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 700;
+.step-card-mobile {
+  background-color: var(--bg-gunmetal);
+  border: 1px solid var(--color-border);
+  padding: 1.8rem 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: var(--transition-fast);
+}
+
+.timeline-step-vertical.active .step-card-mobile {
+  border-color: rgba(212, 20, 26, 0.3);
+}
+
+.step-number-mobile {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--color-accent);
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.6rem;
   display: block;
 }
 
-.timeline-step-vertical h3 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
+.step-card-mobile h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-white);
 }
 
-.timeline-step-vertical p {
+.step-card-mobile p {
   color: var(--color-text-muted);
   font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 @media (max-width: 800px) {
@@ -705,7 +705,7 @@
     display: block;
   }
   .process-section {
-    padding-bottom: 4rem;
+    padding: 5rem 0 3rem 0;
   }
 }
 
