@@ -199,7 +199,6 @@ function initProcessTimeline() {
 
   // Desktop Horizontal Pin Scroll
   if (window.innerWidth > 800) {
-    // Différer le calcul du scrollWidth pour éviter le reflow au chargement
     requestAnimationFrame(() => {
       const scrollWidth = horizontalTimeline.scrollWidth - window.innerWidth;
 
@@ -207,7 +206,8 @@ function initProcessTimeline() {
         scrollTrigger: {
           trigger: '.process-section',
           pin: true,
-          scrub: 1,
+          anticipatePin: 1,
+          scrub: 0.3,
           start: 'top top',
           end: () => `+=${scrollWidth}`,
           invalidateOnRefresh: true,
