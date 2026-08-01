@@ -82,13 +82,18 @@
     const {
       colors      = WAVE_COLORS_HERO,
       bgFill      = '#030405',
-      waveWidth   = 70,
-      waveOpacity = 0.75,
+      waveWidth   = 80,
+      waveOpacity = 0.65,
+      blurPx      = 10,
       speedVal    = 0.002,
-      waveCount   = 4,
+      waveCount   = 5,
     } = options || {};
 
-    const ctx = canvas.getContext('2d', { alpha: false });
+    // Restauration du flou cinématique fondu sur le canvas
+    canvas.style.filter       = `blur(${blurPx}px)`;
+    canvas.style.webkitFilter = `blur(${blurPx}px)`;
+
+    const ctx = canvas.getContext('2d');
     let w, h, nt = 0, animId = null, isVisible = false;
 
     // 2. Plafonner la résolution interne (max 1280px large) pour éviter les lags 1080p/4K sur PC
@@ -212,11 +217,11 @@
     createWavyCanvas(canvas, {
       colors:      WAVE_COLORS_HERO,
       bgFill:      '#030405',
-      waveWidth:   75,
-      waveOpacity: 0.75,
-      blurPx:      6,
+      waveWidth:   80,
+      waveOpacity: 0.65,
+      blurPx:      10,
       speedVal:    0.002,
-      waveCount:   4,
+      waveCount:   5,
     });
   }
 
