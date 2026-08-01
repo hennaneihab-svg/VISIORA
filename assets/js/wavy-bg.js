@@ -116,7 +116,8 @@
       const parent = canvas.parentElement;
       w = canvas.width  = parent ? parent.offsetWidth  : window.innerWidth;
       h = canvas.height = parent ? parent.offsetHeight : window.innerHeight;
-      if (!isSafari) ctx.filter = `blur(${blurPx}px)`;
+      // ctx.filter appliqué UNE SEULE fois au resize, pas à chaque frame
+      if (!isSafari && blurPx > 0) ctx.filter = `blur(${blurPx}px)`;
     }
 
     function drawWaves() {
@@ -125,7 +126,8 @@
         ctx.beginPath();
         ctx.lineWidth   = waveWidth;
         ctx.strokeStyle = colors[i % colors.length];
-        for (let x = 0; x < w; x += 5) {
+        // x += 8 au lieu de x += 5 : réduit les opérations de 38% sans perte visuelle
+        for (let x = 0; x < w; x += 8) {
           const y = noise3D(x / 800, 0.3 * i, nt) * 100;
           ctx.lineTo(x, y + h * 0.5);
         }
@@ -134,8 +136,20 @@
       }
     }
 
-    function render() {
-      ctx.fillStyle  = bgFill;
+    // Throttling à 30fps (1000ms / 30 = 33ms min entre frames)
+    const TARGET_FPS = 30;
+    const FRAME_MS   = 1000 / TARGET_FPS;
+    let lastTime = 0;
+
+    function render(timestamp) {
+      // Sauter la frame si moins de 33ms se sont écoulées
+      if (timestamp - lastTime < FRAME_MS) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
+      lastTime = timestamp;
+
+      ctx.fillStyle   = bgFill;
       ctx.globalAlpha = waveOpacity;
       ctx.fillRect(0, 0, w, h);
       drawWaves();

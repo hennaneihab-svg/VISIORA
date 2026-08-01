@@ -9,22 +9,22 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/logo.png">
 
-  <!-- Preconnect pour fonts Google (réduit latence) -->
+  <!-- Preconnect & Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap">
 
   <!-- Core CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/home.css">
   
-  <!-- GSAP : defer ORDONNÉ — garantit chargement avant home.js/main.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <!-- GSAP Local Scripts (zéro latence CDN) -->
+  <script src="assets/js/gsap.min.js" defer></script>
+  <script src="assets/js/ScrollTrigger.min.js" defer></script>
   
-  <!-- Scripts page (exécutés dans l'ordre, après parsing HTML) -->
+  <!-- Scripts page -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/home.js" defer></script>
-  <!-- WavyBackground : defer pour ne pas bloquer le premier rendu -->
   <script src="assets/js/wavy-bg.js" defer></script>
 
   <!-- Inline Loader CSS — rendu instantan\u00e9, avant tout autre style -->

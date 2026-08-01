@@ -1,9 +1,9 @@
 /* ==========================================================================
    VISIORA - GLOBAL CSS STYLESHEET & DESIGN SYSTEM
+   Fonts chargées via <link> dans le HTML (pas @import = pas de blocage rendu)
    ========================================================================== */
 
-/* 1. IMPORTS & FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+/* 1. FONTS (déclarées dans le HTML via <link rel=preload> + <link rel=stylesheet>) */
 
 /* 2. DESIGN SYSTEM VARIABLES */
 :root {
