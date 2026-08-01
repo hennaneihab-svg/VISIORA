@@ -19,33 +19,37 @@ async function initGlobalComponents() {
   const headerContainer = document.getElementById('global-header');
   const footerContainer = document.getElementById('global-footer');
 
-  // Load Header
+  // Header
   if (headerContainer) {
-    try {
-      const response = await fetch('./components/header.html');
-      if (response.ok) {
-        headerContainer.innerHTML = await response.text();
-        initHeaderInteractions();
-      } else {
-        console.error('Failed to load header component:', response.statusText);
+    if (headerContainer.children.length > 0) {
+      initHeaderInteractions();
+    } else {
+      try {
+        const response = await fetch('./components/header.html');
+        if (response.ok) {
+          headerContainer.innerHTML = await response.text();
+          initHeaderInteractions();
+        }
+      } catch (error) {
+        console.error('Error loading header:', error);
       }
-    } catch (error) {
-      console.error('Error loading header:', error);
     }
   }
 
-  // Load Footer
+  // Footer
   if (footerContainer) {
-    try {
-      const response = await fetch('./components/footer.html');
-      if (response.ok) {
-        footerContainer.innerHTML = await response.text();
-        highlightActiveLinks();
-      } else {
-        console.error('Failed to load footer component:', response.statusText);
+    if (footerContainer.children.length > 0) {
+      highlightActiveLinks();
+    } else {
+      try {
+        const response = await fetch('./components/footer.html');
+        if (response.ok) {
+          footerContainer.innerHTML = await response.text();
+          highlightActiveLinks();
+        }
+      } catch (error) {
+        console.error('Error loading footer:', error);
       }
-    } catch (error) {
-      console.error('Error loading footer:', error);
     }
   }
 }

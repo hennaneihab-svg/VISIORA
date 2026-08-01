@@ -192,32 +192,28 @@ function initStatsCounters() {
  */
 function initProcessTimeline() {
   const horizontalTimeline = document.querySelector('.timeline-horizontal');
-  const horizontalTrack = document.querySelector('.timeline-track-horizontal');
-  const progressBarHorizontal = document.querySelector('.timeline-progress-horizontal');
-  
   if (!horizontalTimeline) return;
 
-  // Desktop Horizontal Pin Scroll
   if (window.innerWidth > 800) {
-    requestAnimationFrame(() => {
-      const scrollWidth = horizontalTimeline.scrollWidth - window.innerWidth;
+    const steps = gsap.utils.toArray('.timeline-step-horizontal');
+    if (!steps.length) return;
 
-      gsap.timeline({
+    gsap.fromTo(steps,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: 'power2.out',
         scrollTrigger: {
-          trigger: '.process-section',
-          pin: true,
-          anticipatePin: 1,
-          scrub: 0.3,
-          start: 'top top',
-          end: () => `+=${scrollWidth}`,
-          invalidateOnRefresh: true,
+          trigger: '.timeline-horizontal',
+          start: 'top 80%',
+          toggleActions: 'play none none none'
         }
-      })
-      .to(horizontalTimeline, { x: () => -scrollWidth, ease: 'none' })
-      .to(progressBarHorizontal, { width: '100%', ease: 'none' }, 0);
-    });
-  } 
-  else {
+      }
+    );
+  } else {
     const verticalSteps = gsap.utils.toArray('.timeline-step-vertical');
     const progressBarVertical = document.querySelector('.timeline-progress-vertical');
 

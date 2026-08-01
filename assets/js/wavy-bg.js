@@ -84,16 +84,11 @@
       bgFill      = '#030405',
       waveWidth   = 70,
       waveOpacity = 0.75,
-      blurPx      = 6,
       speedVal    = 0.002,
       waveCount   = 4,
     } = options || {};
 
-    // 1. GPU Composited CSS blur (ZÉRO impact CPU/GPU canvas context)
-    canvas.style.filter = `blur(${blurPx}px)`;
-    canvas.style.willChange = 'transform';
-
-    const ctx = canvas.getContext('2d', { alpha: false }); // Desactiver alpha global canvas
+    const ctx = canvas.getContext('2d', { alpha: false });
     let w, h, nt = 0, animId = null, isVisible = false;
 
     // 2. Plafonner la résolution interne (max 1280px large) pour éviter les lags 1080p/4K sur PC
