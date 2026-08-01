@@ -28,8 +28,8 @@
 
   /* Layout */
   --max-width: 1440px;
-  --header-height: 90px;
-  --header-height-scrolled: 75px;
+  --header-height: 80px;
+  --header-height-scrolled: 68px;
 
   /* Transitions */
   --transition-smooth: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -225,7 +225,7 @@ header .header-container {
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   text-decoration: none;
   color: var(--color-white);
   flex-shrink: 0;
@@ -238,8 +238,8 @@ header .header-container {
 
 /* Image logo : dimensions contrôlées + léger spin au hover */
 .logo-img {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
   flex-shrink: 0;
   transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
@@ -255,8 +255,8 @@ header .header-container {
 .logo-text {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.6rem;
-  letter-spacing: 0.12em;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-white);
   line-height: 1;
@@ -292,19 +292,19 @@ header .header-container {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 2vw, 2.2rem);
-  margin: 0 1rem;
+  gap: clamp(0.7rem, 1.4vw, 1.8rem);
+  margin: 0 0.5rem;
 }
 
 .nav-link {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
-  letter-spacing: 0.12em;
+  font-size: clamp(0.7rem, 0.8vw, 0.78rem);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-muted);
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
   white-space: nowrap;
 }
 
@@ -334,7 +334,7 @@ header .header-container {
 .header-socials {
   display: flex;
   align-items: center;
-  gap: clamp(0.6rem, 1vw, 1.1rem);
+  gap: clamp(0.5rem, 0.8vw, 0.9rem);
   flex-shrink: 0;
 }
 
@@ -352,8 +352,8 @@ header .header-container {
 }
 
 .social-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   fill: currentColor;
 }
 
@@ -400,41 +400,48 @@ header .header-container {
   background-color: var(--color-white);
 }
 
-/* Mobile Overlay Menu — affichage contrôlé exclusivement par GSAP (main.js) */
-.mobile-nav-overlay {
+/* Mobile Menu Container Overlay */
+.mobile-menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  height: 100dvh;
   background-color: rgba(3, 4, 5, 0.98);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   z-index: 1001;
-  display: none; /* Toggle via GSAP */
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 5rem 1.5rem 3rem 1.5rem;
-  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              visibility 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.mobile-menu-links {
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-nav-list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(1rem, 2.5vh, 1.8rem);
-  margin: auto 0;
+  gap: 1.2rem;
+  text-align: center;
 }
 
 .mobile-nav-link {
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 4.2vh, 2.4rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
   font-weight: 400;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration: none;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
   transition: var(--transition-fast);
   position: relative;
   padding: 0.2rem 0;
@@ -470,7 +477,7 @@ header .header-container {
   height: 22px;
 }
 
-@media (max-width: 1220px) {
+@media (max-width: 1024px) {
   .nav-menu, .header-socials {
     display: none;
   }
