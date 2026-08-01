@@ -206,7 +206,8 @@ function initProcessTimeline() {
         scrollTrigger: {
           trigger: '.process-section',
           pin: true,
-          scrub: 1,
+          anticipatePin: 1,
+          scrub: 0.8,
           start: 'top top',
           end: () => `+=${scrollWidth}`,
           invalidateOnRefresh: true,

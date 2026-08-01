@@ -534,33 +534,41 @@
   position: relative;
 }
 
-.timeline-step-horizontal .step-number {
-  font-family: var(--font-display);
-  font-size: clamp(4.5rem, 7vw, 7rem);
-  font-weight: 700;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.025);
-  position: absolute;
-  top: -2.8rem;
-  left: 7vw;
-  z-index: 1;
-  pointer-events: none;
-  transition: color 0.5s ease;
-}
-
-.timeline-step-horizontal:hover .step-number {
-  color: rgba(212, 20, 26, 0.06);
-}
-
 .step-card {
   background-color: var(--bg-gunmetal);
   border: 1px solid var(--color-border);
-  padding: 2.8rem 3rem;
-  max-width: 560px;
+  padding: 3rem 3.5rem;
+  max-width: 580px;
   width: 100%;
   position: relative;
+  overflow: hidden;
   z-index: 2;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  transition: var(--transition-smooth);
+}
+
+.step-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+}
+
+/* Numéro géant discret intégré dans le coin supérieur droit de la carte */
+.step-number-bg {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.04);
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 1;
+  pointer-events: none;
+  transition: color 0.4s ease;
+}
+
+.step-card:hover .step-number-bg {
+  color: rgba(212, 20, 26, 0.12);
 }
 
 .step-card h3 {
@@ -569,6 +577,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .step-card h3 span {
@@ -586,18 +596,19 @@
   color: var(--color-text-muted);
   font-size: 1.05rem;
   line-height: 1.7;
+  position: relative;
+  z-index: 2;
 }
 
-/* Connecting Line */
+/* Ligne rouge horizontale de connexion sous les cartes */
 .timeline-track-horizontal {
   position: absolute;
-  top: 50%;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(255, 255, 255, 0.08);
   z-index: 1;
-  transform: translateY(-50%);
 }
 
 .timeline-progress-horizontal {
