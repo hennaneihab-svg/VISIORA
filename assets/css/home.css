@@ -506,28 +506,24 @@
   width: 100%;
 }
 
-/* Desktop Horizontal Timeline (Responsive 4-column Grid for Native Smooth Scrolling) */
+/* Desktop Horizontal Timeline (using GSAP scroll scrollTrigger) */
 .timeline-horizontal {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  display: flex;
+  width: 400vw; /* Spans multiple screen widths for pinning effect */
   position: relative;
 }
 
 .timeline-step-horizontal {
-  width: 100%;
-  padding: 0;
+  width: 100vw;
+  padding: 0 10%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   position: relative;
 }
 
 .timeline-step-horizontal .step-number {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: 8rem;
   font-weight: 700;
   line-height: 1;
@@ -546,18 +542,11 @@
 .step-card {
   background-color: var(--bg-gunmetal);
   border: 1px solid var(--color-border);
-  padding: 2.5rem 2rem;
-  width: 100%;
-  height: 100%;
+  padding: 4rem;
+  max-width: 600px;
   position: relative;
   z-index: 2;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  transition: var(--transition-smooth);
-}
-
-.step-card:hover {
-  border-color: var(--color-border-hover);
-  transform: translateY(-5px);
 }
 
 .step-card h3 {
@@ -569,7 +558,7 @@
 }
 
 .step-card h3 span {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-accent);
@@ -577,6 +566,34 @@
   padding: 0.3rem 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+.step-card p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Connecting Line */
+.timeline-track-horizontal {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.05);
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.timeline-progress-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
 }
 
 .step-card p {
