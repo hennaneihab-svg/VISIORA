@@ -21,8 +21,10 @@
   --color-border-hover: rgba(212, 20, 26, 0.3);
 
   /* Typography */
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-display);
+  --font-sans: var(--font-body);
 
   /* Layout */
   --max-width: 1440px;
@@ -50,7 +52,8 @@ html {
 body {
   background-color: var(--bg-primary);
   color: var(--color-text-primary);
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
+  font-weight: 300;
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -78,10 +81,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-weight: 400;
   color: var(--color-white);
-  line-height: 1.2;
+  line-height: 1.12;
+  font-optical-sizing: auto;
 }
 
 a {
