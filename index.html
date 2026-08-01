@@ -9,28 +9,30 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/logo.png">
 
+  <!-- Preconnect pour fonts Google (réduit latence) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <!-- Core CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/home.css">
   
-  <!-- GSAP : chargé en async (non bloquant) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" async></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" async></script>
+  <!-- GSAP : defer ORDONNÉ — garantit chargement avant home.js/main.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
   
-  <!-- Scripts page : defer = exécutés après le HTML parsé, sans bloquer -->
+  <!-- Scripts page (exécutés dans l'ordre, après parsing HTML) -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/home.js" defer></script>
   <!-- WavyBackground : defer pour ne pas bloquer le premier rendu -->
   <script src="assets/js/wavy-bg.js" defer></script>
-  
-  <!-- Inline Loader CSS for instantaneous rendering -->
+
+  <!-- Inline Loader CSS — rendu instantan\u00e9, avant tout autre style -->
   <style>
     #intro-loader {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
       background-color: #030405;
       z-index: 9999;
       display: flex;
@@ -43,40 +45,32 @@
       flex-direction: column;
       align-items: center;
     }
-    /* Image logo dans le loader */
     .loader-logo-img {
-      width: 100px;
-      height: 100px;
+      width: 90px; height: 90px;
       object-fit: contain;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.5rem;
       opacity: 0;
-      transform: scale(0.8) rotate(-10deg);
-      animation: loaderImgReveal 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) 0.15s forwards;
-      filter: drop-shadow(0 0 24px rgba(212, 20, 26, 0.55));
+      transform: scale(0.85) rotate(-8deg);
+      animation: loaderImgReveal 0.5s ease 0.1s forwards;
+      filter: drop-shadow(0 0 20px rgba(212,20,26,0.5));
     }
     @keyframes loaderImgReveal {
-      to {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-      }
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
     }
     .loader-logo {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 3.2rem;
+      font-size: 3rem;
       color: #ffffff;
       letter-spacing: 0.2em;
       font-weight: 700;
       text-transform: uppercase;
       display: block;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
       opacity: 0;
     }
-    .loader-logo span {
-      color: #D4141A;
-    }
+    .loader-logo span { color: #D4141A; }
     .loader-bar {
-      width: 0;
-      height: 2px;
+      width: 0; height: 2px;
       background: linear-gradient(90deg, transparent, #D4141A, transparent);
       margin: 0 auto;
     }
@@ -99,17 +93,11 @@
   <!-- Main Content Area -->
   <main id="main-content">
     
-    <!-- 1. HERO SECTION — WavyBackground canvas injecté dynamiquement par wavy-bg.js -->
+    <!-- 1. HERO SECTION — Canvas wavy injecté par wavy-bg.js (aucune vidéo = perf maximale) -->
     <section class="hero-section" id="hero">
-      <!-- Vidéo conservée en fallback accessible mais masquée visuellement par le canvas animé -->
-      <video class="hero-video-bg" autoplay loop muted playsinline aria-hidden="true"
-             poster="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1920">
-        <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05c563d1dd3e1e2c6d92b12f67645f7&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
-      </video>
-
-      <!-- Overlay cinématographique — z-index géré par wavy-bg.js -->
+      <!-- Overlay cinématographique -->
       <div class="hero-overlay"></div>
-      
+
       <!-- Contenu Hero -->
       <div class="hero-content">
         <p class="hero-subtitle">Studio de création haut de gamme</p>
